@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+        
+{% block content %}
+<div class="container">
+    <div class="location">
+        <a href="/" style="color: black;">Home</a>&nbsp;/&nbsp;
+        <a>Register</a>
+    </div>
+    <h2 class="text-main">Register</h2>
+    <div style="text-align: center; padding-bottom: 20px;">
+        <img src="static/images/home/img1.png" width="400" height="300">
+    </div>
+    <div class="center">
+        <form class="form-horizontal" method="POST" action="addUser" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="control-label col-sm-2">Username</label>
+                <input type="text" class="form-control" name="username" size="50">   
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Firstname</label>
+                <input type="text" class="form-control" name="firstname" size="50">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Lastname</label>
+                <input type="text" class="form-control" name="lastname" size="50">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Email*</label>
+                <input type="email" class="form-control" name="email" size="50">
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Password*</label>
+                <input type="password" class="form-control" name="password" size="50">
+                <div id="passwordHelpBlock" class="form-text">
+                    Password must be at least 8 characters long
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">RePassword*</label>
+                <input type="password" class="form-control" name="repassword" size="50">
+                <div id="passwordHelpBlock" class="form-text">
+                    Confirm password again.
+                </div>
+            </div>
+            <div class="center-padding">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-50">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

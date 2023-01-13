@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+        
+{% block content %}
+<div class="container">
+    <div class="location">
+        <a href="/" style="color: black;">Home</a>&nbsp;/&nbsp;
+        <a>Search</a>
+    </div>
+    <form class="input-group rounded" style="padding: 100px;">
+        <input type="search" name="textSearch" style="width: 100px;" class="form-control rounded" placeholder="Search . ." aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-danger" id="search-addon">
+            <i class="fa fas fa-search" aria-hidden="true" style="font-size: 15px"></i>
+        </button>
+    </form>
+    <h2 class="text-main">Search Results</h2>
+    <div class="padding-label"></div>
+    {% if check == 1 %}
+    <h5 class="search-name"> <i class="fa fas fa-search" aria-hidden="true" style="font-size: 15px"></i>&nbsp;: {{textSearch}}</h5>
+    <div class="row my-3">
+        {% for post in posts %}
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="static/images/products/{{post.image}}.png" alt="" />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <div class="name-item">{{post.name}}</div>
+                    </h5>
+                    <h5 style="font-weight: bold;">{{post.price}} ฿</h5>
+                    <p class="card-text">Lorem ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem ipsum has been the industry's standard dummy text ever since the 1500
+                    </p>
+                    <form action="add" method="POST">
+                        {% csrf_token %}
+                        <input hidden type="text" value="{{post.name}}" name="name" id="name">
+                        <input hidden type="text" value="{{post.price}}" name="price" id="price">
+                        <input hidden type="text" value="{{post.image}}" name="image" id="image">
+                        {% if user.is_authenticated %}
+                            <div class="button-center">
+                                <button type="submit" class="btn btn-danger" >
+                                    <i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 20px"></i>
+                                </button>
+                            </div>
+                        {% else %}
+                            <div class="button-center">
+                                <a href="/login"><button type="button" class="btn btn-light"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 20px; color: #fff;"></i></button></a>
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    
+        <div style="padding: 110px 0 120px 0; text-align: center;">
+            <i class="fa-sharp fa-solid fa-circle-xmark" style="font-size: 30px; padding: 20px;"></i>
+            <p style="font-size: 18px; padding: 5px;">No product were found.</p>
+        </div>  
+    {% endif %}
+</div>
+{% endblock %}

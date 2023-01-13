@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+        
+{% block content %}
+<div class="container">
+    <div class="location">
+        <a href="/" style="color: black;">Home</a>&nbsp;/&nbsp;
+        <a>Cart</a>
+    </div>
+    <h2 class="text-main">List your Products</h2>
+    {% if count == 0 %}
+    <div style="padding: 130px 0 100px 0; text-align: center;">
+        <i class="fa-sharp fa-solid fa-circle-xmark" style="font-size: 30px; padding: 20px;"></i>
+        <p style="font-size: 18px; padding: 5px;">There are no product in the cart yet.</p>
+    </div>  
+    {% else %}
+    <div class="padding-label"></div>
+    <table class="table table-bordered" style="text-align: center;">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for post in posts %}
+        <tbody>
+            <tr>
+                <td><img class="list-img" src="static/images/products/{{post.image}}.png" alt="" /></td>
+                <td>{{post.name}}</td>
+                <td>{{post.price}} ฿</td>
+                <td><a class="btn btn-danger" href="{% url 'delete' post.id %}"><i class="fa fa-trash" aria-hidden="true" style="font-size: 15px"></i>&nbsp;&nbsp;Remove</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        <tr>
+            <td colspan="2" style="font-weight: bold; font-size: 20px;">Total</td>
+            <td style="font-weight: bold; font-size: 20px;">{{total}} ฿</td>
+            <td>
+                <div class="button-center">
+                    <a href="/payment">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fa fa-sharp fa-solid fa-credit-card" aria-hidden="true" style="font-size: 15px"></i>&nbsp;&nbsp;Payment
+                        </button>
+                    </a>
+                </div>
+            </td>
+        </tr>
+    </table>  
+    {% endif %} 
+</div>
+{% endblock %}

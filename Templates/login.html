@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+        
+{% block content %}
+<div class="container">
+    <div class="location">
+        <a href="/" style="color: black;">Home</a>&nbsp;/&nbsp;
+        <a>Login</a>
+    </div>
+    <h2 class="text-main">Login</h2>
+    <div style="text-align: center; padding-bottom: 20px;">
+        <img src="static/images/home/img2.png" width="400" height="300">
+    </div>
+    <div class="center">
+        <form class="form-horizontal" method="POST" action="userLogin" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                    <label class="control-label col-sm-2">Username</label>
+                    <input type="text" class="form-control" name="username" size="50">   
+            </div>
+            <div class="form-group">
+                    <label class="control-label col-sm-2">Password</label>
+                    <input type="password" class="form-control" name="password" size="50">
+            </div>
+            <div class="form-group">
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+            </div>
+            <div class="center-padding">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-50">
+                        <button type="submit" class="btn btn-primary">LOGIN</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="center-padding">
+        <div class="text-main">Don't have Accounts?&nbsp;&nbsp;<a href="/register" class="text-register">Register Now</a></div>
+    </div>
+</div>
+    
+{% endblock %}

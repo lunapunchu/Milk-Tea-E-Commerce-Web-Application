@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+        
+{% block content %}
+<div class="container">
+    <div class="location">
+        <a href="/" style="color: black;">Home</a>&nbsp;/&nbsp;
+        <a>Category</a>&nbsp;/&nbsp;
+        <a>Soda</a>
+    </div>
+    <h2 class="text-main">Soda</h2>
+    <div class="padding-label"></div>
+    <div class="row my-3">
+        {% for post in posts %}
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="static/images/products/{{post.image}}.png" alt="" />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <div class="name-item">{{post.name}}</div>
+                    </h5>
+                    <h5 style="font-weight: bold;">{{post.price}} ฿</h5>
+                    <p class="card-text">Lorem ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem ipsum has been the industry's standard dummy text ever since the 1500
+                    </p>
+                    <form action="add" method="POST">
+                        {% csrf_token %}
+                        <input hidden type="text" value="{{post.name}}" name="name" id="name">
+                        <input hidden type="text" value="{{post.price}}" name="price" id="price">
+                        <input hidden type="text" value="{{post.image}}" name="image" id="image">
+                        {% if user.is_authenticated %}
+                            <div class="button-center">
+                                <button type="submit" class="btn btn-danger" >
+                                    <i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 20px"></i>
+                                </button>
+                            </div>
+                        {% else %}
+                            <div class="button-center">
+                                <a href="/login"><button type="button" class="btn btn-light"><i class="fa fa-shopping-cart" aria-hidden="true" style="font-size: 20px; color: #fff;"></i></button></a>
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+</div>
+{% endblock %}

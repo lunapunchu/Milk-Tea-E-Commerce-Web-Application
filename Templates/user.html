@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+        
+{% block content %}
+<div class="container">
+    <div class="location">
+        <a href="/" style="color: black;">Home</a>&nbsp;/&nbsp;
+        <a>Login</a>&nbsp;/&nbsp;
+        <a>Account</a>
+    </div>
+    <h2 class="text-main">My Account</h2>
+    <div class="alert-padding">
+        <img class="img-user" src="static/images/home/user.png" alt="" />
+    </div>
+    <div class="alert-padding">
+        <h5 class="text-main" style="padding: 5px;">{{user.first_name}}</h5>
+        <h5 class="text-main" style="padding: 5px;">{{user.last_name}}</h5>
+    </div>
+    <h5 class="text-main">{{user.email}}</h5>
+    <div style="padding-top: 30px;"></div>
+    <div class="form-group">
+        <div class="text-main">
+            <a href="/logout" class="text-register"><i class="fa fa-sharp fa-solid fa-arrow-right-from-bracket"></i>
+                &nbsp;&nbsp;Logout
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+    
+{% endblock %}
